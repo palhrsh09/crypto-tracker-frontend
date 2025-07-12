@@ -8,15 +8,17 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
+    if (token && typeof token === 'string' && token !== 'undefined' && token.trim() !== '') {
       setUser({ token });
     }
     setLoading(false);
   }, []);
 
   const login = (token) => {
-    localStorage.setItem('token', token);
-    setUser({ token });
+    if (token && typeof token === 'string' && token !== 'undefined' && token.trim() !== '') {
+      localStorage.setItem('token', token);
+      setUser({ token });
+    }
   };
 
   const logout = () => {
