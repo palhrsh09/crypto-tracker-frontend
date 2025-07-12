@@ -8,7 +8,8 @@ const CryptoDashboard = () => {
   const [sortField, setSortField] = useState(null);
   const [sortOrder, setSortOrder] = useState('asc');
   const navigate = useNavigate();
-  const api_url = import.meta.env.VITE_API_URL
+  const api_url = import.meta.env.VITE_API_URL;
+
   const fetchCoins = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -58,7 +59,7 @@ const CryptoDashboard = () => {
     });
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="w-screen h-screen flex flex-col items-center justify-start bg-gray-100 p-4 overflow-auto">
       <h1 className="text-3xl font-bold mb-4 text-center text-white bg-gray-800 p-4 rounded">
         Crypto Tracker
       </h1>
@@ -67,11 +68,11 @@ const CryptoDashboard = () => {
         placeholder="Search by name or symbol..."
         value={search}
         onChange={handleSearch}
-        className="mb-4 p-2 border rounded w-full bg-gray-800 text-white border-gray-600"
+        className="mb-4 p-2 border rounded w-full max-w-2xl bg-gray-800 text-white border-gray-600"
       />
-      <div className="overflow-x-auto">
+      <div className="w-full overflow-x-auto max-h-[75vh] overflow-y-auto">
         <table className="min-w-full bg-gray-800 text-white border border-gray-600">
-          <thead>
+          <thead className="sticky top-0 bg-gray-900 z-10">
             <tr>
               <th className="px-4 py-2 border cursor-pointer" onClick={() => handleSort('name')}>
                 Name {sortField === 'name' && (sortOrder === 'asc' ? '↑' : '↓')}
@@ -111,9 +112,7 @@ const CryptoDashboard = () => {
                   {coin.change24h !== undefined ? `${coin.change24h.toFixed(2)}%` : 'N/A'}
                 </td>
                 <td className="px-4 py-2 border">
-                  {coin.timestamp
-                    ? new Date(coin.timestamp).toLocaleString()
-                    : 'N/A'}
+                  {coin.timestamp ? new Date(coin.timestamp).toLocaleString() : 'N/A'}
                 </td>
                 <td className="px-4 py-2 border text-center">
                   <button

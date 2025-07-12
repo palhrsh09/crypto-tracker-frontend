@@ -8,7 +8,7 @@ import {
 const HistoryChart = () => {
   const { coinId } = useParams();
   const [data, setData] = useState([]);
-  const api_url = import.meta.env.VITE_API_URL
+  const api_url = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const fetchHistory = async () => {
@@ -35,17 +35,19 @@ const HistoryChart = () => {
   }, [coinId]);
 
   return (
-    <div className="bg-white p-4 rounded-xl shadow-lg m-4">
-      <h3 className="text-xl font-bold mb-4">{coinId} Price History</h3>
-      <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="timestamp" tick={{ fontSize: 10 }} />
-          <YAxis domain={['auto', 'auto']} />
-          <Tooltip />
-          <Line type="monotone" dataKey="price" stroke="#2563EB" strokeWidth={2} />
-        </LineChart>
-      </ResponsiveContainer>
+    <div className="w-screen h-screen flex flex-col items-center justify-center bg-gray-100 p-4 overflow-auto">
+      <div className="bg-white p-6 rounded-2xl shadow-xl w-full max-w-5xl">
+        <h3 className="text-2xl font-bold mb-6 text-center text-gray-800">{coinId} Price History</h3>
+        <ResponsiveContainer width="100%" height={400}>
+          <LineChart data={data}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="timestamp" tick={{ fontSize: 10 }} />
+            <YAxis domain={['auto', 'auto']} />
+            <Tooltip />
+            <Line type="monotone" dataKey="price" stroke="#2563EB" strokeWidth={2} />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 };
