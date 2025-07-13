@@ -27,5 +27,5 @@ A frontend application built with React that allows users to authenticate, view 
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/crypto-tracker-frontend.git
+git clone https://github.com/palhrsh09/crypto-tracker-frontend
 cd crypto-tracker-frontend
